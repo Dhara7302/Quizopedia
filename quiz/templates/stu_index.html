@@ -1,0 +1,51 @@
+{% extends 'stu_base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div>
+    <h1>View all Test</h1>
+    
+</div>
+<div class="table-div">
+    <table class="content-table">
+        <thead>
+            <tr>
+                <th>Test Name</th>
+                <th>Status</th>
+                <th>Completion Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in obj %}
+            <tr>
+                <td>{{i.t_category}}</td>
+                <td><strong>
+                        {% if i.isappear %}
+                       <p class="status-active">Completed</p> 
+                        {% else %}
+                        Pending
+                        {% endif %}
+                    </strong></td>
+                <td>{{i.dat}}</td>
+                <td>
+                    {% if i.isappear %} 
+                    <!-- If Test is Completed -->
+                    <a href="{% url 'stu_catWiseResult' %}" class="btn">View Result</a>
+                    {% else %}
+                    <!-- If Test is inCompleted -->
+                    <a href="{% url 'stu_allcat' %}" class="btn">Give Test</a>
+                   
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+
+
+        </tbody>
+    </table>
+</div>
+
+
+{% endblock %}
